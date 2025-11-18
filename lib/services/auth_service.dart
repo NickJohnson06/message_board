@@ -25,6 +25,31 @@ class AuthService {
     return AppUser.fromMap(doc.id, doc.data()!);
   }
 
+  Future<void> updateUserProfile({
+    required String firstName,
+    required String lastName,
+    required String role,
+    DateTime? dob,
+  }) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw Exception('No logged in user.');
+    }
+
+    final data = <String, dynamic>{
+      'firstName': firstName,
+      'lastName': lastName,
+      'role': role,
+      'displayName': '$firstName $lastName',
+    };
+
+    if (dob != null) {
+      data['dob'] = Timestamp.fromDate(dob);
+    }
+
+    await _db.collection('users').doc(user.uid).update(data);
+  }
+
   Future<UserCredential> signUpWithEmailPassword({
     required String firstName,
     required String lastName,
