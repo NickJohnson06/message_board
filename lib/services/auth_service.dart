@@ -49,6 +49,35 @@ class AuthService {
 
     await _db.collection('users').doc(user.uid).update(data);
   }
+  
+  Future<void> updateDob(DateTime dob) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw Exception('No logged in user.');
+    }
+
+    await _db.collection('users').doc(user.uid).update({
+      'dob': Timestamp.fromDate(dob),
+    });
+  }
+
+  Future<void> updateEmail(String newEmail) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw Exception('No logged in user.');
+    }
+
+    await user.updateEmail(newEmail);
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw Exception('No logged in user.');
+    }
+
+    await user.updatePassword(newPassword);
+  }
 
   Future<UserCredential> signUpWithEmailPassword({
     required String firstName,
