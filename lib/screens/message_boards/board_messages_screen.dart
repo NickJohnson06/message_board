@@ -227,10 +227,16 @@ class _BoardMessagesScreenState extends State<BoardMessagesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.board.name),
-        subtitle: Text(
-          subtitle,
-          style: const TextStyle(fontSize: 12),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.board.name),
+            if (subtitle.isNotEmpty)
+              Text(
+                subtitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+          ],
         ),
       ),
       body: Column(

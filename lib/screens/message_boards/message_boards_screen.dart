@@ -6,26 +6,26 @@ class MessageBoardsScreen extends StatelessWidget {
   const MessageBoardsScreen({super.key});
 
   List<MessageBoard> _buildBoards() {
-    return const [
-      MessageBoard(
+    return [
+      const MessageBoard(
         id: 'general',
         name: 'General Discussion',
         icon: Icons.forum_outlined,
         order: 1,
       ),
-      MessageBoard(
+      const MessageBoard(
         id: 'announcements',
         name: 'Announcements',
         icon: Icons.campaign_outlined,
         order: 0,
       ),
-      MessageBoard(
+      const MessageBoard(
         id: 'help',
         name: 'Help & Support',
         icon: Icons.help_outline,
         order: 2,
       ),
-      MessageBoard(
+      const MessageBoard(
         id: 'random',
         name: 'Random',
         icon: Icons.bubble_chart_outlined,

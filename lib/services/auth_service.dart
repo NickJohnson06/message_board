@@ -62,13 +62,13 @@ class AuthService {
   }
 
   Future<void> updateEmail(String newEmail) async {
-    final user = _auth.currentUser;
-    if (user == null) {
-      throw Exception('No logged in user.');
-    }
-
-    await user.updateEmail(newEmail);
+  final user = _auth.currentUser;
+  if (user == null) {
+    throw Exception('No logged in user.');
   }
+
+  await user.verifyBeforeUpdateEmail(newEmail);
+}
 
   Future<void> updatePassword(String newPassword) async {
     final user = _auth.currentUser;
